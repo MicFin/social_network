@@ -32,6 +32,8 @@ gem 'devise',  :git => 'https://github.com/plataformatec/devise.git'
 gem 'gravatarify', '~> 3.0.0'
 
 gem 'public_activity'
+
+gem 'auto_html'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
