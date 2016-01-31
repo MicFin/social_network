@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'users/show'
   devise_for :users, controllers: {registrations: 'registrations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -9,6 +8,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :users, only: [:show, :index]
+  resources :friendships, only: [:create, :destroy, :accept] do 
+    member do 
+      put :accept
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
