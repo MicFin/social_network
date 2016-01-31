@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
       format.html {redirect_to users_path, notice: "Friendship Created"}
     end
   end
-  
+
   def destroy
     @friendship.destroy
     respond_to do |format|
@@ -19,21 +19,20 @@ class FriendshipsController < ApplicationController
 
   def accept
     @friendship.accept_friendship
+    @friendship.create_activity key: 'friendship.accepted', owner: @friendship.user, recipient: @friendship.friend
+    @friendship.create_activity key: 'friendship.accepted', owner: @friendship.friend, recipient: @friendship.user
     respond_to do |format|
       format.html {redirect_to users_path, notice: "Friendship Accepted"}
     end
-  end  
+  end
 
   private
 
   def set_user
-
     @user = User.find(params[:user_id])
   end
 
   def set_friendship
-
     @friendship = Friendship.find(params[:id])
   end
-
 end
